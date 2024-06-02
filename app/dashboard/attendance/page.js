@@ -49,7 +49,7 @@ export default function Attendance() {
       </div>
 
        {/**Attendance Grid */}
-<AttendanceGrid attendanceList={attendanceList}/>
+<AttendanceGrid attendanceList={attendanceList} selectedMonth={selectedMonth}/>
 
     </div>
   )

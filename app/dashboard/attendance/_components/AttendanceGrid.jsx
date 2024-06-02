@@ -1,9 +1,87 @@
-import React from 'react'
+'use client'
 
-export default function AttendanceGrid({attendanceList}) {
+import GlobalApi from '@/app/_services/GlobalApi';
+import moment from 'moment';
+import React, { useEffect, useState } from 'react'
+import { toast } from 'sonner';
+const uniqueRecord = []
+const existingUser =new set();
+
+export default function AttendanceGrid({attendanceList,selectedMonth}) {
+    const [rowData, setRowData] = useState();
+    const [colDefs,setColDefs] = useState([
+        {field:'studentId'},
+        {field:'name'}
+    ]);
+
+    const daysInMonth =(year,month)=>new Date(year,month+1,0).getMonth();
+    const numberOfDays = daysInMonth(moment(selectedMonth).format('YYYY'),moment(selectedMonth).format('MM'));
+    const daysArrays = Array.from({length:numberOfDays},(_,i)=>i+1);
+
+    const isPresent =(studentId,day)=>{
+        const result = attendanceList.find(item=>item.day==day&&item.studentId==studentId);
+        return result?true:false
+    }
+
+    useEffect(()=>{
+     if(attendanceList){
+        const userList=getUniqueRecord();
+        setRowData(userList);
+
+        daysArrays.forEach((date)=>{
+            setColDefs(prevData=>[...prevData,{
+                field:date.toString(),width:50, editable:true
+            }])
+
+            userList.forEach(obj=>{
+                obj[date]=isPresent(obj.studentId,date)
+            }) 
+        })
+     }
+    },[attendanceList])
+   
+  
+    const getUniqueRecord = () =>{
+        const uniqueRecord = []
+        const existingUser =new set();
+
+        attendanceList?.forEach(record => {
+            if(!existingUser.has(record.studentId)){
+                existingUser.add(record.studentId);
+                uniqueRecord.push(record);
+            }
+        });
+
+        return uniqueRecord;
+    }
+
+   const onMarkAttendance =(day,studentId,presentStatus)=>{
+    const date =moment(selectedMonth).format('MM/yyyy');
+
+    if(presentStatus){
+        const data = {
+            day:day,
+            studentId:studentId,
+            present:presentStatus,
+            date:date
+        }
+        GlobalApi.MarkAttendance(data).then(res=>{
+            toast("Student ID:"+{studentId}+"marked as present")
+        })
+    }
+   }
   return (
     <div>
-      
+      <div
+  className="ag-theme-quartz" // applying the grid theme
+  style={{ height: 500 }} // the grid will fill the size of the parent container
+ >
+   <AgGridReact
+       rowData={rowData}
+       columnDefs={colDefs}
+       onCellValueChange={(e)=>onMarkAttendance(e.colDefs.field,e.data.studentId,e.newValue)}
+   />
+ </div>
     </div>
   )
 }

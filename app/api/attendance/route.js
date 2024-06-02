@@ -29,3 +29,16 @@ export async function GET(req){
 
     return NextResponse.json(result)
 }
+
+export async function POST(req,res){
+    const data = await req.json();
+    const result = await db.insert(ATTENDANCE)
+    .values({
+        studentId:data.studentId,
+        present:data.present,
+        day:data.day,
+        date:data.date
+    });
+
+    return NextResponse.json(result)
+}
