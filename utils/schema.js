@@ -12,3 +12,11 @@ export const STUDENTS = mysqlTable('student',{
     address:varchar('address',{length:500}).notNull(),
    contact:varchar('contact',{length:15}).notNull()
 })
+
+export const ATTENDANCE = mysqlTable('attendance',{
+    id:int('id',{length:11}).autoincrement().primaryKey(),
+    studentId:int('studentId',{length:11}).notNull(),
+    present:boolean('present').default(false),
+    day:int('day',{length:11}).notNull(),
+    date:varchar('date',{length:20}).notNull()
+})
