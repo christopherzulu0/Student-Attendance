@@ -1,10 +1,12 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import AddNewStudent from './_components/AddNewStudent'
 import GlobalApi from '@/app/_services/GlobalApi'
+import StudentListTable from './_components/StudentListTable'
 
 export default function Students() {
+  const [studentList,setStudentList] = useState([])
 
     useEffect(()=>{
     GetAllStudents();
@@ -21,6 +23,8 @@ export default function Students() {
         Students
         <AddNewStudent/>
     </h2>
+
+    <StudentListTable studentList={studentList} refreshData={GetAllStudents}/>
     </div>
   )
 }

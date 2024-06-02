@@ -13,8 +13,10 @@
   "dependencies": {
     "@kinde-oss/kinde-auth-nextjs": "^2.2.13",
     "@planetscale/database": "^1.18.0",
+    "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
+    "ag-grid-react": "^31.3.2",
     "axios": "^1.7.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

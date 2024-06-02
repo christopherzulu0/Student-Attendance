@@ -1,4 +1,4 @@
-"use client"
+ "use client"
 
 import React, { useEffect, useState } from 'react'
 import {
@@ -22,7 +22,7 @@ export default function AddNewStudent() {
     const [open,setOpen] =useState(false);
     const [grade,setGrade] = useState([]);
     const [loading,setLoading]=useState(false)
-
+  
     const {
         register,
         handleSubmit,
