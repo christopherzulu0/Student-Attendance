@@ -6,7 +6,7 @@
  const DeleteStudentRecord = (id) => axios.delete('/api/student?id='+id);
  const GetAttendanceList = (grade,month)=>axios.get('/api/attendance?grade='+grade+"&month="+month)
  const MarkAttendance =(data)=>axios.post('/api/attendance',data);  
- 
+ const markAbsent = (studentId,day,date)=>axios.delete('/api/attendance?studentId='+studentId+"&"+day+"&date="+date)
  
  
  export default{
@@ -15,5 +15,6 @@
     CreateNewStudent,
     DeleteStudentRecord,
     GetAttendanceList,
-    MarkAttendance 
+    MarkAttendance,
+    markAbsent 
  }

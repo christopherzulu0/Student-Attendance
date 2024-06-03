@@ -18,7 +18,7 @@ import { LoaderIcon } from 'lucide-react';
 
   
 
-export default function AddNewStudent() {
+export default function AddNewStudent({refreshData}) {
     const [open,setOpen] =useState(false);
     const [grade,setGrade] = useState([]);
     const [loading,setLoading]=useState(false)
@@ -50,7 +50,7 @@ export default function AddNewStudent() {
 
         if(res.data){
             reset();
-           
+            refreshData();
             setOpen(false);
             toast("Student has been added.")
 

@@ -7,11 +7,16 @@ import { toast } from 'sonner';
 const uniqueRecord = []
 const existingUser =new set();
 
+
+const pagination = true;
+const paginationPageSize = 500;
+const paginationPageSizeSelector = [10, 50, 100];
+
 export default function AttendanceGrid({attendanceList,selectedMonth}) {
     const [rowData, setRowData] = useState();
     const [colDefs,setColDefs] = useState([
-        {field:'studentId'},
-        {field:'name'}
+        {field:'studentId',filter:true},
+        {field:'name',filter:true}
     ]);
 
     const daysInMonth =(year,month)=>new Date(year,month+1,0).getMonth();
@@ -66,7 +71,13 @@ export default function AttendanceGrid({attendanceList,selectedMonth}) {
             date:date
         }
         GlobalApi.MarkAttendance(data).then(res=>{
-            toast("Student ID:"+{studentId}+"marked as present")
+            toast("Student ID:"+studentId+"marked as present")
+        })
+    }
+    else{
+        GlobalApi.markAbsent(studentId,day,date)
+        .then(res=>{
+            toast("Student ID:"+studentId+"marked as absent")
         })
     }
    }
@@ -80,6 +91,9 @@ export default function AttendanceGrid({attendanceList,selectedMonth}) {
        rowData={rowData}
        columnDefs={colDefs}
        onCellValueChange={(e)=>onMarkAttendance(e.colDefs.field,e.data.studentId,e.newValue)}
+       pagination={pagination}
+       paginationPageSize={paginationPageSize}
+       paginationPageSizeSelector={paginationPageSizeSelector}
    />
  </div>
     </div>
