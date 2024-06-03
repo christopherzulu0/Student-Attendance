@@ -1,6 +1,7 @@
 'use client'
 
 import GlobalApi from '@/app/_services/GlobalApi';
+import { getUniqueRecord } from '@/app/_services/service';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner';
@@ -46,19 +47,7 @@ export default function AttendanceGrid({attendanceList,selectedMonth}) {
     },[attendanceList])
    
   
-    const getUniqueRecord = () =>{
-        const uniqueRecord = []
-        const existingUser =new set();
 
-        attendanceList?.forEach(record => {
-            if(!existingUser.has(record.studentId)){
-                existingUser.add(record.studentId);
-                uniqueRecord.push(record);
-            }
-        });
-
-        return uniqueRecord;
-    }
 
    const onMarkAttendance =(day,studentId,presentStatus)=>{
     const date =moment(selectedMonth).format('MM/yyyy');
