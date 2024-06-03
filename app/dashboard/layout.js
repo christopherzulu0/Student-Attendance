@@ -4,7 +4,7 @@ import SideNav from './_components/SideNav'
 import Header from './_components/Header'
 import { Toaster } from '@/components/ui/sonner'
 
-export default function ayout({children}) {
+export default function layout({children}) {
   return (
    <>
     <div className='md:w-64 fixed hidden md:block'>

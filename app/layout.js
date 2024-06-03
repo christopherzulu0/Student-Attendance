@@ -1,7 +1,6 @@
 
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { KindeProvider } from "@kinde-oss/kinde-auth-nextjs";
 import { ThemeProvider } from "./ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -13,6 +12,6 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <KindeProvider><html lang="en"><body className={inter.className}><ThemeProvider>{children}</ThemeProvider></body></html></KindeProvider>
+   <html lang="en"><body className={inter.className}><ThemeProvider>{children}</ThemeProvider></body></html>
   );
 }

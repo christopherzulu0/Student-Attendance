@@ -6,6 +6,7 @@ import GradeSelect from '../_components/GradeSelect';
 import GlobalApi from '../_services/GlobalApi';
 import StatusList from './_components/StatusList';
 import BarChartComponent from './_components/BarChartComponent';
+import PieChart from './_components/PieChart';
 
 
 export default function Dashboard() {
@@ -54,14 +55,14 @@ export default function Dashboard() {
 
 <StatusList attendanceList={attendanceList}/>
 
-<div className='grid grid-cols-1 md:grid-cols-3'>
+<div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
 
   <div className='md:col-span-2'>
     <BarChartComponent attendanceList={attendanceList} totalPresentData={totalPresentData}/>
   </div>
 
 <div>
-
+<PieChart attendanceList={attendanceList}/>
 </div>
 
 </div>

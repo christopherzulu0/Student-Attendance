@@ -5,9 +5,9 @@ import { redirect } from "next/navigation";
 import React,{useEffect} from "react";
 
 export default function Home() {
-  useEffect(()=>{
-    redirect('/api/auth/login?post_login_redirect_url=/dashboard')
-  },[])
+  // useEffect(()=>{
+  //   redirect('/api/auth/login?post_login_redirect_url=/dashboard')
+  // },[])
   return (
    <>
    <h1>Twsts</h1>

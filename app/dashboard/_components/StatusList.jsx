@@ -16,7 +16,8 @@ export default function StatusList({attendanceList}) {
             const PresentPercentage = (attendanceList.length/(totalStudent.length*Number(today))*100);
             setTotalPercentage(PresentPercentage.length)
         }
-    })
+    },[attendanceList]);
+
   return (
     <div className='grid grid-cols-1 md: grid-flow-cols-2 lg:grid-cols-3 gap-5 my-6 '>
         <Card icon={<GraduationCap/>} title='Total Student' value={totalStudent}/>
