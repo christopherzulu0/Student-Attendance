@@ -1,34 +1,41 @@
 "use client"
+
+import React, { useEffect, useState } from 'react';
+import moment from 'moment';
 import { getUniqueRecord } from '@/app/_services/service';
-import React, { useEffect, useState } from 'react'
+
 import Card from './Card';
 import { GraduationCap, TrendingDown, TrendingUp } from 'lucide-react';
 
-export default function StatusList({attendanceList}) {
-    const [totalStudent,setTotalStudent] =useState();
-    const [totalPrecentage, setTotalPercentage] = useState();
+export default function StatusList({ attendanceList }) {
+  const [totalStudent, setTotalStudent] = useState(0);
+  const [totalPercentage, setTotalPercentage] = useState(0);
 
-    useEffect(()=>{
-        if(attendanceList){
-            const totalStudent = getUniqueRecord(attendanceList);
-            setTotalStudent(totalStudent);
+  useEffect(() => {
+    if (attendanceList) {
+      const uniqueStudents = getUniqueRecord(attendanceList);
+      const totalStudentCount = uniqueStudents.length;
+      setTotalStudent(totalStudentCount);
 
-            const today = moment().format('D');
-            const PresentPercentage = (attendanceList.length/(totalStudent.length*Number(today))*100);
-            setTotalPercentage(PresentPercentage.length)
-        }
-    },[attendanceList]);
+      const today = moment().format('D');
+      const presentPercentage = (attendanceList.length / (totalStudentCount * Number(today))) * 100;
+      setTotalPercentage(presentPercentage);
+    }
+  }, [attendanceList]);
 
   return (
-    <div className='grid grid-cols-1 md: grid-flow-cols-2 lg:grid-cols-3 gap-5 my-6 '>
-        <Card icon={<GraduationCap/>} title='Total Student' value={totalStudent}/>
-        <Card 
-  icon={<TrendingUp/>} 
-  title="Total % Present" 
-  value={totalPrecentage !== undefined ? totalPrecentage.toFixed(1) + "%" : "N/A"} 
-/>
-        <Card icon={<TrendingDown/>} title='Total % Absent' value={(100-totalPrecentage).toFixed(1)+"%"}/>
-
+    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-6'>
+      <Card icon={<GraduationCap />} title='Total Students' value={totalStudent} />
+      <Card 
+        icon={<TrendingUp />} 
+        title="Total % Present" 
+        value={totalPercentage !== undefined ? totalPercentage.toFixed(1) + "%" : "N/A"} 
+      />
+      <Card 
+        icon={<TrendingDown />} 
+        title='Total % Absent' 
+        value={totalPercentage !== undefined ? (100 - totalPercentage).toFixed(1) + "%" : "N/A"} 
+      />
     </div>
-  )
+  );
 }

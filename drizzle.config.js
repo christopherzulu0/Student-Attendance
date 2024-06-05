@@ -5,10 +5,10 @@ export default defineConfig({
   driver: 'mysql2',
   dialect:'mysql',
   dbCredentials: {
-    host: "roundhouse.proxy.rlwy.net",
-  user: "root",
-  database: "railway",
-  password:"JrGHxiTpjnucngrTBudVliFkZafUAQgB",
-   port:"43041"
+    host:process.env.HOST,
+    user:process.env.USER,
+    database:process.env.DATABASE,
+    password:process.env.PASSWORD,
+     port:process.env.PORT
   }
 });

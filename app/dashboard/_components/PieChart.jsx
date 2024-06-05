@@ -1,7 +1,8 @@
 "use client"
 
-import { getUniqueRecord } from '@/app/_services/service';
 import React, { useEffect, useState } from 'react'
+import { getUniqueRecord } from '@/app/_services/service';
+
 import { Pie, ResponsiveContainer } from 'recharts'
 import {moment} from 'moment'
 export default function PieChart({attendanceList}) {

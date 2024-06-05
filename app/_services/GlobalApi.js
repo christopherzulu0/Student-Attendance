@@ -1,7 +1,7 @@
 const {default:axios} = require ('axios');
 
 const GetAllGrades = () => 
-  axios.fetch('/api/grades')
+  axios.get('/api/grades')
     .then(response => response.data)
     .catch(error => {
       console.error('Error fetching grades:', error);
@@ -9,7 +9,7 @@ const GetAllGrades = () =>
     });
 
 const GetAllStudents = () => 
-  axios.fetch('/api/students')
+  axios.get('/api/students')
     .then(response => response.data)
     .catch(error => {
       console.error('Error fetching students:', error);
