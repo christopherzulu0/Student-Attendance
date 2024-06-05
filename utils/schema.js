@@ -17,6 +17,7 @@ export const STUDENTS = mysqlTable('student',{
 export const ATTENDANCE = mysqlTable('attendance',{
     id:int('id',{length:11}).autoincrement().primaryKey(),
     studentId:int('studentId',{length:11}).notNull(),
+      grade:varchar('grade',{length:10}).notNull(),
     present:boolean('present').default(false),
     day:int('day',{length:11}).notNull(),
     date:varchar('date',{length:20}).notNull()

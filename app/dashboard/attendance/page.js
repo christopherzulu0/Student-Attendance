@@ -17,6 +17,7 @@ export default function Attendance() {
   const onSearchHandler = ()=> {
      const month = moment(selectedMonth).format('MM/YYYY');
      GlobalApi.GetAttendanceList(selectedGrade,month).then(res=>{
+      
           setAttendanceList(res.data)
      })
   }

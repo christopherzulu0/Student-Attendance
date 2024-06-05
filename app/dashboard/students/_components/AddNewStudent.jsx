@@ -20,7 +20,7 @@ import { LoaderIcon } from 'lucide-react';
 
 export default function AddNewStudent({refreshData}) {
     const [open,setOpen] =useState(false);
-    const [grade,setGrade] = useState([]);
+    const [grades,setGrades] = useState([]);
     const [loading,setLoading]=useState(false)
   
     const {
@@ -39,8 +39,8 @@ export default function AddNewStudent({refreshData}) {
 
       const GetAllGradesList =()=>{
         GlobalApi.GetAllGrades().then(res=>{
-            console.log("Gardes",res.data);
-            setGrade(res.data); 
+            console.log("Grades",res.data);
+            setGrades(res.data); 
         })
       }
 
@@ -81,8 +81,8 @@ export default function AddNewStudent({refreshData}) {
       <select className='p-3 border rounded-lg'
       {...register('grade',{required:true})}
       >
-       {grade.map((item,index)=>{
-         <option key={index} value={item.grade}>{item.grade}</option>
+       {grades?.map((item,index)=>{
+         <option key={index.id} value={item.grade}>{item.grade}</option>
        })}
         
       </select>
