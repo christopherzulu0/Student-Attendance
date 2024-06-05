@@ -1,3 +1,5 @@
+"use client"
+
 import { getUniqueRecord } from '@/app/_services/service';
 import React, { useEffect, useState } from 'react'
 import { Pie, ResponsiveContainer } from 'recharts'

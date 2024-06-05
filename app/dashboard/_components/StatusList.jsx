@@ -1,3 +1,4 @@
+"use client"
 import { getUniqueRecord } from '@/app/_services/service';
 import React, { useEffect, useState } from 'react'
 import Card from './Card';
@@ -21,7 +22,11 @@ export default function StatusList({attendanceList}) {
   return (
     <div className='grid grid-cols-1 md: grid-flow-cols-2 lg:grid-cols-3 gap-5 my-6 '>
         <Card icon={<GraduationCap/>} title='Total Student' value={totalStudent}/>
-        <Card icon={<TrendingUp/>} title='Total % Present' value={totalPrecentage.toFixed(1)+"%"}/>
+        <Card 
+  icon={<TrendingUp/>} 
+  title="Total % Present" 
+  value={totalPrecentage !== undefined ? totalPrecentage.toFixed(1) + "%" : "N/A"} 
+/>
         <Card icon={<TrendingDown/>} title='Total % Absent' value={(100-totalPrecentage).toFixed(1)+"%"}/>
 
     </div>

@@ -1,3 +1,4 @@
+"use client"
 import { getUniqueRecord } from '@/app/_services/service';
 import React, { useEffect, useState } from 'react'
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'

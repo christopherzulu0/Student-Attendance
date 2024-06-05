@@ -7,7 +7,7 @@ import GlobalApi from '../_services/GlobalApi';
 import StatusList from './_components/StatusList';
 import BarChartComponent from './_components/BarChartComponent';
 import PieChart from './_components/PieChart';
-
+import moment from 'moment';
 
 export default function Dashboard() {
     const {setTheme} = useTheme();
@@ -25,14 +25,17 @@ export default function Dashboard() {
 
 
 
-
-    const getStudentAttendance =()=>{
-      GlobalApi.GetAttendanceList(selectedGrade,moment(selectedMonth).format('MM/yyyy'))
-      .then(res=>{
-        setAttendanceList(res.data)
-      })
-    }
-
+    
+    const getStudentAttendance = () => {
+      GlobalApi.GetAttendanceList(selectedGrade, moment(selectedMonth).format('MM/YYYY'))
+        .then(res => {
+          setAttendanceList(res.data);
+        })
+        .catch(error => {
+          console.error('Error fetching attendance list:', error);
+        });
+    };
+    
     const GetTotalPresentCountByDay =()=>{
       GlobalApi.TotalPresentCountByDay(moment(selectedMonth).format('MM/yyyy'),selectedMonth)
       .then(res=>{

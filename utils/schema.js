@@ -1,4 +1,5 @@
 import { int, mysqlTable, varchar } from "drizzle-orm/mysql-core";
+import { boolean } from "drizzle-orm/pg-core";
 
 export const GRADES = mysqlTable('grades',{
     id:int('id',{length:11}).primaryKey(),

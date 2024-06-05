@@ -14,7 +14,7 @@ export default function Students() {
     
     const GetAllStudents = () =>{
         GlobalApi.GetAllStudents().then(res=>{
-            console.log(res.data)
+           setStudentList(res.data)
         })
     }
   return (
