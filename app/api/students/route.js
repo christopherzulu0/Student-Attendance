@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 
 import { eq } from "drizzle-orm";
 import { db } from "@/utils";
+
+
 export async function POST(req,res){
     const data = await res.json();
 

@@ -1,6 +1,6 @@
 export const getUniqueRecord = (attendanceList) =>{
     const uniqueRecord = []
-    const existingUser =new set();
+    const existingUser =new Set();
 
     attendanceList?.forEach(record => {
         if(!existingUser.has(record.studentId)){

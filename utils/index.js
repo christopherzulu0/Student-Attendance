@@ -3,11 +3,11 @@ import { drizzle } from "drizzle-orm/mysql2";
 import mysql from "mysql2/promise";
 
 const connection = await mysql.createConnection({
-  host:process.env.HOST,
-  user:process.env.USER,
-  database:process.env.DATABASE,
-  password:process.env.PASSWORD,
-   port:process.env.PORT
+  host: viaduct.proxy.rlwy.net,
+  user: root,
+  database: railway,
+  password:AYHKDXWrkGMAPcsxaiOYrvkOlAayVQlH,
+   port:56146
 });
 
 const db = drizzle(connection);

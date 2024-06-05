@@ -39,7 +39,7 @@ export default function AddNewStudent({refreshData}) {
 
       const GetAllGradesList =()=>{
         GlobalApi.GetAllGrades().then(res=>{
-            console.log(res.data);
+            console.log("Gardes",res.data);
             setGrade(res.data); 
         })
       }
