@@ -6,8 +6,8 @@ import GradeSelect from '../_components/GradeSelect';
 import GlobalApi from '../_services/GlobalApi';
 import StatusList from './_components/StatusList';
 import BarChartComponent from './_components/BarChartComponent';
-import PieChart from './_components/PieChart';
 import moment from 'moment';
+import PieCharts from './_components/PieCharts';
 
 export default function Dashboard() {
     const {setTheme} = useTheme();
@@ -20,6 +20,8 @@ export default function Dashboard() {
         // setTheme('system')
         GetTotalPresentCountByDay();
         getStudentAttendance();
+
+       
     
     },[selectedMonth || selectedGrade])
 
@@ -29,6 +31,7 @@ export default function Dashboard() {
     const getStudentAttendance = () => {
       GlobalApi.GetAttendanceList(selectedGrade, moment(selectedMonth).format('MM/YYYY'))
         .then(res => {
+          console.log(res.data)
           setAttendanceList(res.data);
         })
         .catch(error => {
@@ -39,6 +42,7 @@ export default function Dashboard() {
     const GetTotalPresentCountByDay =()=>{
       GlobalApi.TotalPresentCountByDay(moment(selectedMonth).format('MM/yyyy'),selectedMonth)
       .then(res=>{
+       
        setTotalPresentData(res.data);
       })
     }
@@ -65,7 +69,7 @@ export default function Dashboard() {
   </div>
 
 <div>
-<PieChart attendanceList={attendanceList}/>
+<PieCharts attendanceList={attendanceList}/>
 </div>
 
 </div>

@@ -5,10 +5,10 @@ export default defineConfig({
   driver: 'mysql2',
   dialect:'mysql',
   dbCredentials: {
-    host: "viaduct.proxy.rlwy.net",
+    host: "localhost",
     user: "root",
-    database: "railway",
-    password:"AYHKDXWrkGMAPcsxaiOYrvkOlAayVQlH",
-     port:"56146"
+    database: "attendance",
+  
+     port:"3306"
   }
 });

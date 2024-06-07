@@ -8,16 +8,19 @@ import {
   } from "@/components/ui/popover"
 import { Button } from '@/components/ui/button'
 import { CalendarDays } from 'lucide-react'
-import {addMonths} from 'date-fns'
-import moment from 'moment/moment'
+
+
 import { Calendar } from "@/components/ui/calendar"
+import { addMonths } from 'date-fns'
+import moment from 'moment/moment'
 
   
 export default function MonthSelection({selectedMonth}) {
-    const today = new Date();
 
+     
     const nextMonths = addMonths(new Date(),0)
-    const [month,setMonth] = useState(nextMonths)
+    const [month,setMonth] = useState(nextMonths);
+   
   return (
     <div>
       <Popover>
@@ -37,7 +40,7 @@ export default function MonthSelection({selectedMonth}) {
     className="flex flex-1 justify-center"
   />
   </PopoverContent>
-</Popover>
+</Popover> 
 
     </div>
   )

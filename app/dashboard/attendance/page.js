@@ -5,21 +5,24 @@ import GradeSelect from '@/app/_components/GradeSelect'
 import MonthSelection from '@/app/_components/MonthSelection'
 import GlobalApi from '@/app/_services/GlobalApi'
 import { Button } from '@/components/ui/button'
-import moment from 'moment'
+import moment from 'moment/moment'
 import AttendanceGrid from './_components/AttendanceGrid'
 
 export default function Attendance() {
-  const[selectedMonth, setSelectedMonth] = useState();
+  const [selectedMonth, setSelectedMonth] = useState();
   const [selectedGrade, setSelectedGrade] = useState();
   const [attendanceList,setAttendanceList]= useState();
 
 
   const onSearchHandler = ()=> {
+    console.log(selectedMonth,selectedGrade)
      const month = moment(selectedMonth).format('MM/YYYY');
+     console.log("Month",month)
      GlobalApi.GetAttendanceList(selectedGrade,month).then(res=>{
-      
+           console.log("List:",res.data)
+           
           setAttendanceList(res.data)
-     })
+     }) 
   }
   return (
     <div className='p-10'>

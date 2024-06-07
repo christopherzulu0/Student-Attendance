@@ -3,9 +3,11 @@
 import React, { useEffect, useState } from 'react'
 import { getUniqueRecord } from '@/app/_services/service';
 
-import { Pie, ResponsiveContainer } from 'recharts'
-import {moment} from 'moment'
-export default function PieChart({attendanceList}) {
+import { Pie, PieChart, ResponsiveContainer } from 'recharts'
+import moment from 'moment'
+export default function PieCharts(attendanceList) {
+
+
    const [data, setData] = useState([])
 
     useEffect(()=>{
@@ -37,6 +39,8 @@ export default function PieChart({attendanceList}) {
         <Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} outerRadius={80} label />
         </PieChart>
         </ResponsiveContainer>
+
+
     </div>
   )
 }

@@ -3,7 +3,7 @@ import React, { useEffect,useState } from 'react'
 import GlobalApi from '../_services/GlobalApi';
 
 export default function GradeSelect({selectedGrade}) {
-    const [grade,setGrade] = useState([]);
+    const [grades,setGrade] = useState([]);
 
     useEffect(()=>{
         GetAllGradesList();
@@ -12,20 +12,22 @@ export default function GradeSelect({selectedGrade}) {
  
        const GetAllGradesList =()=>{
          GlobalApi.GetAllGrades().then(res=>{
-             console.log(res.data);
+             console.log("TotalGrades:",res.data);
              setGrade(res.data); 
          })
        }
   return (
     <div>
-       <select className='p-2 border rounded-lg'
-       onChange={(e)=>selectedGrade(e.target.value)}
-      >
-       {grade.map((item,index)=>{
-         <option key={index} value={item.grade}>{item.grade}</option>
-       })}
+ 
         
-      </select>
+        <select className='p-32border rounded-lg bg-white' 
+          onChange={(e)=>selectedGrade(e.target.value)}
+        >
+    {grades.map((item, index) => (
+      <option  key={index} value={item.grade}>{item.grade}</option>
+    ))}
+  </select>
+      
     </div>
   )
 }

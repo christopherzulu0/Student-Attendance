@@ -6,7 +6,7 @@ import { db } from "@/utils";
 
 
 export async function POST(req,res){
-    const data = await res.json();
+    const data = await req.json();
 
     const result = await db.insert(STUDENTS)
     .values({

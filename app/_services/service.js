@@ -1,9 +1,15 @@
-export const getUniqueRecord = (attendanceList) =>{
-    const uniqueRecord = []
-    const existingUser =new Set();
+export const getUniqueRecord = (attendanceList) => {
+    // Check if attendanceList is an array
+    if (        attendanceList) {
+        // If not an array, return an empty array or handle the error accordingly
+        return [];
+    }
+
+    const uniqueRecord = [];
+    const existingUser = new Set();
 
     attendanceList?.forEach(record => {
-        if(!existingUser.has(record.studentId)){
+        if (!existingUser.has(record.studentId)) {
             existingUser.add(record.studentId);
             uniqueRecord.push(record);
         }

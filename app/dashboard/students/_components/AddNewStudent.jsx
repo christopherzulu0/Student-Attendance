@@ -34,6 +34,7 @@ export default function AddNewStudent({refreshData}) {
 
       useEffect(()=>{
        GetAllGradesList();
+      
       },[]);
 
 
@@ -44,9 +45,12 @@ export default function AddNewStudent({refreshData}) {
         })
       }
 
+      
       const onSubmit =(data)=>{
        GlobalApi.CreateNewStudent(data).then(res=>{
         setLoading(true);
+
+        console.log("DAta:",res.data)
 
         if(res.data){
             reset();
@@ -76,17 +80,15 @@ export default function AddNewStudent({refreshData}) {
       />
       </div>
 
-      <div className='flex flex-col  py-2'>
-      <label>Grade</label>
-      <select className='p-3 border rounded-lg'
-      {...register('grade',{required:true})}
-      >
-       {grades?.map((item,index)=>{
-         <option key={index.id} value={item.grade}>{item.grade}</option>
-       })}
-        
-      </select>
-      </div>
+      <div className='flex flex-col py-2'>
+  <label>Grade</label>
+  <select className='p-3 border rounded-lg bg-white' {...register('grade', { required: true })}>
+    {grades.map((item, index) => (
+      <option  key={index} value={item.grade}>{item.grade}</option>
+    ))}
+  </select>
+</div>
+
 
 
       <div className='py-2'>

@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-export default function Card(icon,title,value) {
+export default function Card({icon,title,value}) {
   return (
     <div className='flex items-center gap-5 p-7 bg-sky-100 rounded-lg  shadow'>
         <div className='p-2 h-[10] rounded-full bg-white text-primary'>

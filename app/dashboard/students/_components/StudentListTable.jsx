@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useState } from 'react'
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
@@ -29,8 +31,8 @@ export default function StudentListTable({studentList, refreshData}) {
         return(
             <>
             <AlertDialog>
-      <AlertDialogTrigger asChild>
-      <Button variant="destructive"><Trash/></Button>
+      <AlertDialogTrigger>
+      <Button variant="destructive" size={'sm'} ><Trash/></Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -85,7 +87,7 @@ export default function StudentListTable({studentList, refreshData}) {
     <div className='p-2 rounded-lg border shadow-sm flex gap-2 mb-4 max-w-sm'>
       <Search/>
       <input type='text' placeholder='search on Anything..'
-       className='outline-none w-full'
+       className='outline-none w-full bg-gray-100'
        onChange={(event)=>setSearchInput(event.target.value)}
       />
     </div>
@@ -99,5 +101,6 @@ export default function StudentListTable({studentList, refreshData}) {
    />
  </div>
    </div>
+
   )
 }

@@ -1,6 +1,6 @@
 import { db } from "@/utils";
 import { ATTENDANCE, STUDENTS } from "@/utils/schema";
-import { eq, isNull } from "drizzle-orm";
+import {  eq,and, isNull } from "drizzle-orm";
 
 import { NextResponse } from "next/server";
 
@@ -9,21 +9,21 @@ export async function GET(req){
     const searchParams = req.nextUrl.searchParams;
     const grade = searchParams.get('grade');
     const month = searchParams.get('month'); 
-
-
+    
     const result = await db.select({
-        name:STUDENTS.name,
-        present:ATTENDANCE.present,
-        day:ATTENDANCE.day,
-        grade:STUDENTS.grade,
-        studentId:STUDENTS.id,
-        attendanceId:ATTENDANCE.id
+        name: STUDENTS.name,
+        present: ATTENDANCE.present,
+        day: ATTENDANCE.day,
+        date:ATTENDANCE.date,
+        grade: STUDENTS.grade,
+        studentId: STUDENTS.id,
+        attendanceId: ATTENDANCE.id
     }).from(STUDENTS)
     .leftJoin(ATTENDANCE,and(eq(STUDENTS.id,ATTENDANCE.studentId),eq(ATTENDANCE.date,month)))
-    where(eq(STUDENTS.grade,grade))
-
+    .where(eq(STUDENTS.grade,grade))
     
-    return NextResponse.json(result)
+    return NextResponse.json(result);
+    
 }
 
 export async function POST(req,res){
@@ -33,7 +33,8 @@ export async function POST(req,res){
         studentId:data.studentId,
         present:data.present,
         day:data.day,
-        date:data.date
+        date:data.date,
+        grade:data.grade
     });
 
     return NextResponse.json(result)

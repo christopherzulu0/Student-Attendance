@@ -5,14 +5,13 @@ import GlobalApi from '@/app/_services/GlobalApi';
 import { getUniqueRecord } from '@/app/_services/service';
 import { AgGridReact } from 'ag-grid-react';
 
-import moment from 'moment';
+import moment from 'moment/moment';
 import { toast } from 'sonner';
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; 
 
 
-const uniqueRecord = []
-const existingUser =new Set();
+
 
 
 const pagination = true;
@@ -39,6 +38,8 @@ export default function AttendanceGrid({attendanceList,selectedMonth}) {
      if(attendanceList){
         const userList=getUniqueRecord();
         setRowData(userList);
+
+        console.log("user list:",userList)
 
         daysArrays.forEach((date)=>{
             setColDefs(prevData=>[...prevData,{
