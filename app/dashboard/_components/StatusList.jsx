@@ -29,15 +29,16 @@ export default function StatusList({ attendanceList }) {
     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-6'>
       <Card icon={<GraduationCap />} title='Total Students' value={totalStudent} />
       <Card 
-        icon={<TrendingUp />} 
-        title="Total % Present" 
-        value={totalPercentage !== undefined ? totalPercentage.toFixed(1) + "%" : "N/A"} 
-      />
-      <Card 
-        icon={<TrendingDown />} 
-        title='Total % Absent' 
-        value={totalPercentage !== undefined ? (100 - totalPercentage).toFixed(1) + "%" : "N/A"} 
-      />
+    icon={<TrendingUp />} 
+    title="Total % Present" 
+    value={(isNaN(totalPercentage) || totalPercentage === undefined) ? "0%" : totalPercentage.toFixed(1) + "%"} 
+/>
+<Card 
+    icon={<TrendingDown />} 
+    title='Total % Absent' 
+    value={(isNaN(totalPercentage) || totalPercentage === undefined) ? "0%" : (100 - totalPercentage).toFixed(1) + "%"} 
+/>
+
     </div>
   );
 }

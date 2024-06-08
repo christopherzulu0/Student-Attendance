@@ -33,9 +33,8 @@ export async function POST(req,res){
         studentId:data.studentId,
         present:data.present,
         day:data.day,
-        date:data.date,
-        grade:data.grade
-    });
+        date:data.date
+     });
 
     return NextResponse.json(result)
 }

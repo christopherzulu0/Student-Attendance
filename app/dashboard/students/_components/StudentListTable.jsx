@@ -32,7 +32,7 @@ export default function StudentListTable({studentList, refreshData}) {
             <>
             <AlertDialog>
       <AlertDialogTrigger>
-      <Button variant="destructive" size={'sm'} ><Trash/></Button>
+      <Button variant="destructive" size="sm" ><Trash/></Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>

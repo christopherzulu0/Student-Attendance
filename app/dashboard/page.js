@@ -18,7 +18,7 @@ export default function Dashboard() {
     
     useEffect(()=>{
         // setTheme('system')
-        GetTotalPresentCountByDay();
+        GetTotalPresentCountByDay(attendanceList);
         getStudentAttendance();
 
        
@@ -39,13 +39,21 @@ export default function Dashboard() {
         });
     };
     
-    const GetTotalPresentCountByDay =()=>{
-      GlobalApi.TotalPresentCountByDay(moment(selectedMonth).format('MM/yyyy'),selectedMonth)
-      .then(res=>{
-       
-       setTotalPresentData(res.data);
-      })
-    }
+    const GetTotalPresentCountByDay = () => {
+      GlobalApi.TotalPresentCountByDay(moment(selectedMonth).format('MM/yyyy'), selectedGrade)
+          .then(res => {
+              // Assuming the response data structure is an array of objects with day, presentCount, and absentCount
+              if (Array.isArray(res.data)) {
+                  setTotalPresentData(res.data);
+              } else {
+                  console.error('Invalid data format received from the API:', res.data);
+              }
+          })
+          .catch(error => {
+              console.error('Error fetching total present count by day:', error);
+          });
+  };
+  
 
   return (
     <div className='p-10'>
