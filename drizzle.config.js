@@ -5,10 +5,10 @@ export default defineConfig({
   // driver: 'mysql2',
   dialect:'mysql',
   dbCredentials: {
-    host: "localhost",
-    user: "root",
-    database: "attendance",
-  
-     port:"3306"
+    host: "roundhouse.proxy.rlwy.net",
+  user: "root",
+  database: "railway",
+   port:"43041",
+   password:"JrGHxiTpjnucngrTBudVliFkZafUAQgB"
   }
 });
