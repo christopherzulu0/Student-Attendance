@@ -43,7 +43,7 @@ useEffect(()=>{
 })
   return (
     <div className='border shadow-md h-screen p-5'>
-      <Image src={''}
+      <Image src='https://www.universityofgalway.ie/media/celt/images/notused/technology/qwickly/attendance-banner-1024x306.png'
       width={180}
       height={50}
       alt='logo' />
